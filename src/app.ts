@@ -5,7 +5,7 @@ const server = express()
 server.use(express.json())
 
 server.get('/', (request: Request, response: Response) => {
-    response.status(200).json({response: "ok!!"})
+  response.status(200).json({ response: 'ok!!' })
 })
 
 const port = 3000
