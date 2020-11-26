@@ -1,19 +1,21 @@
-import express, { Request, Response } from 'express'
+import express from 'express'
+import bodyParser from 'body-parser'
 
 import swaggerUI from 'swagger-ui-express'
-import swaggerDocument from './api-schema.json'
+import swaggerDocument from './schema.json'
 
-const server = express()
+import ErrorHandler from './errors/ErrorHandler'
 
-server.use(express.json())
+import routes from './routes'
 
-server.get('/', (request: Request, response: Response) => {
-  response.status(200).json({ response: 'ok!!' })
-})
+const app = express()
 
-server.use('/docs', swaggerUI.serve, swaggerUI.setup(swaggerDocument))
+app.use(bodyParser.json())
+app.use(bodyParser.urlencoded({ extended: true }))
+app.use('/docs', swaggerUI.serve, swaggerUI.setup(swaggerDocument))
+app.use(routes)
 
-const port = 3000
-const host = '0.0.0.0'
+const errorhandler = new ErrorHandler()
+app.use(errorhandler.handle)
 
-server.listen(port, host)
+export default app
