@@ -11,4 +11,5 @@ export interface User {
 
 export interface UserDocument extends Omit<User, '_id'>, Document {
   generateAccessToken: () => { accessToken: string }
+  comparePassword: (password: string) => Promise<boolean>
 }

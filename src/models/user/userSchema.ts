@@ -37,4 +37,9 @@ userSchema.methods.generateAccessToken = function () {
   return { accessToken: jwt.sign(user, secret) }
 }
 
+userSchema.methods.comparePassword = async function (password) {
+  const bcrypt = new Bcrypt()
+  return await bcrypt.compare(password, this.password)
+}
+
 export default userSchema
