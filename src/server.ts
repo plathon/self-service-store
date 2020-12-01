@@ -1,8 +1,6 @@
-import dotenv from 'dotenv-flow'
+import 'config/dotenv'
 import app from './app'
 import { connect } from './config/mongo'
-
-dotenv.config()
 
 connect()
 

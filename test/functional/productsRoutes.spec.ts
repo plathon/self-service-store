@@ -1,11 +1,10 @@
+import '../../src/config/dotenv'
 import supertest from 'supertest'
+import jwt from 'jsonwebtoken'
 import faker from 'faker'
-import dotenv from 'dotenv-flow'
 import app from '../../src/app'
 import { connect, disconnect } from '../../src/config/mongo'
 import { ProductModel } from '../../src/models/product/productModel'
-
-dotenv.config()
 
 const request = () => supertest(app)
 
@@ -48,6 +47,14 @@ describe('testing products routes', () => {
       description: faker.commerce.productDescription()
     }
 
+    const user = {
+      _id: faker.random.uuid,
+      name: faker.name.findName,
+      email: faker.internet.email
+    }
+
+    const token = jwt.sign(user, process.env.APP_SECRET)
+
     let products = await ProductModel.find().exec()
     expect(products.length).toBe(0)
 
@@ -55,6 +62,7 @@ describe('testing products routes', () => {
       .post('/product')
       .send(product)
       .set('Accept', 'application/json')
+      .set('Authorization', `Bearer ${token}`)
 
     expect(status).toBe(200)
     expect(type).toBe('application/json')

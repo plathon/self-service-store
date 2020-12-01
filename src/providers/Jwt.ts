@@ -1,9 +1,9 @@
-import IJwt, { ISign } from './IJwt'
+import IJwt from './IJwt'
 
 import jwt from 'jsonwebtoken'
 
 export default class Jwt implements IJwt {
-  sign(data: ISign, privateKey: string): string {
+  sign(data: { [key: string]: string }, privateKey: string): string {
     return jwt.sign(data, privateKey)
   }
 }
