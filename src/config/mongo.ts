@@ -3,7 +3,7 @@ import mongoose, { Connection } from 'mongoose'
 let database: Connection
 
 export const connect = async () => {
-  const uri = 'mongodb://localhost:27017/test'
+  const uri = process.env.MONGO_URI
 
   if (database) return
 
