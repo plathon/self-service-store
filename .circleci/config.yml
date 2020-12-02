@@ -3,7 +3,7 @@ jobs:
   build:
     docker:
       - image: cimg/node:13.0.1
-      - image: mongo:4.4.1-xenial
+      - image: mongo:4.4.2
     steps:
       - checkout
       - run: npm install
