@@ -11,7 +11,7 @@ const request = () => supertest(app)
 describe('testing products routes', () => {
   beforeAll(async () => await connect())
   afterAll(async () => await disconnect())
-  afterEach(async () => {
+  beforeEach(async () => {
     await ProductModel.deleteMany({})
   })
 

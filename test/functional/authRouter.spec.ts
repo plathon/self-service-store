@@ -11,7 +11,7 @@ const request = () => supertest(app)
 describe('testing user routes', () => {
   beforeAll(async () => await connect())
   afterAll(async () => await disconnect())
-  afterEach(async () => {
+  beforeEach(async () => {
     await UserModel.deleteMany({})
   })
 
