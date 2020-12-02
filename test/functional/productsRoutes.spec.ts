@@ -27,10 +27,12 @@ describe('testing products routes', () => {
       }
     ]
 
-    products.forEach(async element => {
-      const product = new ProductModel(element)
-      await product.save()
-    })
+    await Promise.all(
+      products.map(async productItem => {
+        const product = new ProductModel(productItem)
+        return await product.save()
+      })
+    )
 
     const { status, body, type } = await request()
       .get('/products')
