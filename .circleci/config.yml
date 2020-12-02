@@ -6,11 +6,11 @@ jobs:
       - image: mongo:4.4.2
     steps:
       - checkout
-      - run: npm install
-      - run: npm run lint
+      - run: yarn
+      - run: yarn lint
       - run:
           name: Run tests
-          command: npm test
+          command: yarn test
           environment:
             APP_SECRET: TOP_SECRET_APP_PHRASE
             MONGO_URI: mongodb://localhost:27017/test
