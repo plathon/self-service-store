@@ -8,7 +8,7 @@
     "start": "node ./dist/app.js",
     "start:dev": "tsnd -r tsconfig-paths/register --transpile-only --respawn --ignore-watch node_modules src/server.ts",
     "test": "jest --runInBand",
-    "lint": "./node_modules/.bin/eslint './src/**/*ts'"
+    "lint": "eslint './src/**/*ts'"
   },
   "husky": {
     "hooks": {

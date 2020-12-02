@@ -6,7 +6,7 @@ jobs:
       - image: mongo:4.4.2
     steps:
       - checkout
-      - run: yarn
+      - run: yarn --verbose
       - run: yarn lint
       - run:
           name: Run tests
